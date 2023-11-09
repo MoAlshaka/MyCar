@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,12 @@ Route::prefix('seller')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
 
     Route::middleware("IsApiUser")->group(function(){
+        // car
+        Route::get('/car',[CarController::class,'index']);
+        Route::get('/car-show/{id}',[CarController::class,'show']);
+        Route::post('/car-store',[CarController::class,'store']);
+        Route::post('/car-update/{id}',[CarController::class,'update']);
+        Route::get('/car-delete/{id}',[CarController::class,'delete']);
         // logout
         Route::post('/logout',[AuthController::class,'logout']);
 
